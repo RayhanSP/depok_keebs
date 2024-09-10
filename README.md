@@ -30,7 +30,7 @@ Link PWS: [Depok Keebs](http://rayhan-syahdira-depokkeebs.pbp.cs.ui.ac.id/)
 4. Selanjutnya, `views.py` memproses request dan *fetch* data dari `models.py`.
 5. `views.py` mengirimkan response HTTP berupa template `main.html` kembali pada User.
 
-![Bagan Alur Request dan Response Django](images/tugas_2_django_bagan.jpg)
+![Bagan Alur Request dan Response Django](images/TUGAS%202%20DJANGO%20BAGAN.jpg)
 
 ## **Pertanyaan 3**  
 **Jelaskan fungsi git dalam pengembangan perangkat lunak:**
