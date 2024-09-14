@@ -55,6 +55,7 @@ Pengimplementasian sebuah platform memerlukan data delivery untuk mengirim data 
 ## **Pertanyaan 7**  
 **Menurutmu, mana yang lebih baik antara XML dan JSON serta mengapa JSON lebih populer dibandingkan XML:**
 
+![XML vs JSON comparison](images/JSON_vs._XML.png)
 Menurut saya, JSON mengungguli XML di beberapa bidang. Secara struktur dan ukuran, data JSON lebih compact dibanding XML, dan JSON lebih terintegrasi dengan berbagai bahasa pemrograman modern seperti JavaScript. Karena formatnya yang lebih sederhana, JSON lebih cepat diparsing daripada XML. Alasan-alasan tersebut cukup untuk membuat JSON lebih populer dibandingkan XML.
 
 ## **Pertanyaan 8**  
