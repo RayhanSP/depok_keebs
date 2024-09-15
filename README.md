@@ -74,8 +74,8 @@ Jika tidak menyertakan `csrf_token` dalam form Django, secara default Django aka
 
 
 ## **Mengakses URL dengan Postman**
-![Postman xml](images/postman_xml)
-![Postman xml id](images/postman_xml_id)
-![Postman json](images/postman_json)
-![Postman json id](images/postman_json_id)
+![Postman xml](images/postman_xml.png)
+![Postman xml id](images/postman_xml_id.png)
+![Postman json](images/postman_json.png)
+![Postman json id](images/postman_json_id.png)
 
