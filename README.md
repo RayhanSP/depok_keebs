@@ -70,3 +70,12 @@ Kita membutuhkan `csrf_token` untuk melindungi aplikasi dari serangan Cross-Site
 
 Jika tidak menyertakan `csrf_token` dalam form Django, secara default Django akan memblokir semua permintaan POST dengan error **403 Forbidden**. Lalu, aplikasi akan menjadi rentan terhadap serangan CSRF. Penyerang dapat memanfaatkan absennya `csrf_token` ini dengan membuat halaman berbahaya yang mengirimkan permintaan POST ke aplikasi web yang sah atas nama pengguna yang sedang login.
 
+
+
+
+## **Mengakses URL dengan Postman**
+![Postman xml](images/postman_xml)
+![Postman xml id](images/postman_xml_id)
+![Postman json](images/postman_json)
+![Postman json id](images/postman_json_id)
+
