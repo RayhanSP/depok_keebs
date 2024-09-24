@@ -1,6 +1,7 @@
 # Depok Keebs
- 
+Mau keyboard yang tak hanya enak dilihat tapi juga enak dipakai? Depok Keebs siap mewujudkan keyboard impianmu. Ucapkan selamat tinggal pada keyboard standar dan mulailah menciptakan pengalaman mengetik yang berbeda dengan kami.
 Link PWS: [Depok Keebs](http://rayhan-syahdira-depokkeebs.pbp.cs.ui.ac.id/)
+
 
 <details>
 <summary> <b> Tugas 2: Implementasi Model-View-Template (MVT) pada Django </b> </summary>
@@ -138,14 +139,14 @@ Jika tidak menyertakan `csrf_token` dalam form Django, secara default Django aka
 
     
 ## **Pertanyaan 1**
-**Apa perbedaan antara `HttpResponseRedirect()` dan `redirect()`**
+**Apa perbedaan antara `HttpResponseRedirect()` dan `redirect()`:**
 
 `HttpResponseRedirect()` adalah kelas Django yang digunakan untuk membuat respons HTTP dengan kode status 302 (redirect). Saat menggunakan ini, kita harus memberikan URL tujuan secara eksplisit, baik dalam bentuk string URL lengkap atau menggunakan `reverse()` untuk mendapatkan URL dari nama rute. Fungsinya murni hanya untuk mengalihkan pengguna ke URL lain tanpa fitur tambahan.
 `redirect()` adalah fungsi utilitas Django yang lebih sederhana dan fleksibel. Ini dapat menerima berbagai jenis argumen seperti URL, nama rute, atau objek model. Django akan secara otomatis menangani konversi argumen ini menjadi URL yang benar. `redirect()` adalah cara yang lebih umum digunakan karena lebih mudah dan memiliki kemampuan tambahan dibandingkan `HttpResponseRedirect()`.
 
 
 ## **Pertanyaan 2**
-**Jelaskan cara kerja penghubungan model `Product` dengan `User`!**
+**Jelaskan cara kerja penghubungan model `Product` dengan `User`:**
 
 Cara kerja penghubungan model Product dengan User di Django bekerja melalui konsep ForeignKey, yang memungkinkan satu entitas (dalam hal ini, Product) berelasi dengan satu entitas lainnya (User). Berikut cara kerjanya secara bertahap:
 1. Pada model Product, kita menambahkan field user yang merupakan ForeignKey ke model User. Ini berarti setiap entri mood dihubungkan secara langsung ke satu pengguna.
@@ -155,14 +156,14 @@ Dengan menambahkan ForeignKey di model, mengisi field user saat menyimpan, dan m
 
 
 ## **Pertanyaan 3**
-**Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.**
+**Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut:**
 
 Authentication adalah proses verifikasi identitas pengguna, memastikan bahwa pengguna yang mencoba mengakses sistem adalah siapa yang mereka klaim. Di Django, autentikasi dilakukan saat pengguna login, di mana kredensial seperti username dan password diverifikasi dengan data yang tersimpan di database.
 Authorization, di sisi lain, adalah proses yang mengatur apa yang dapat dilakukan pengguna setelah terautentikasi. Django menggunakan sistem permissions untuk mengontrol akses pengguna ke berbagai sumber daya atau fungsi dalam aplikasi. Misalnya, hanya pengguna tertentu yang dapat menambah atau mengedit data berdasarkan izin yang diberikan. Dekorator seperti `@login_required` dan `@permission_required` digunakan untuk membatasi akses berdasarkan status login atau izin spesifik yang dimiliki pengguna.
 
 
 ## **Pertanyaan 4**
-**Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?**
+**Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan:**
 
 Django menyimpan status login pengguna dengan menggunakan session di server dan mengirimkan cookie sessionid ke browser pengguna untuk melacak session tersebut. Setiap kali pengguna mengunjungi halaman lain, cookie ini digunakan untuk mengidentifikasi session pengguna di server, sehingga Django dapat mengenali siapa yang sedang login. Selain untuk login, cookies juga berfungsi menyimpan preferensi pengguna dan untuk tujuan analitik, tetapi penggunaannya tidak selalu aman. Cookies rentan terhadap serangan seperti XSS atau pembajakan session, sehingga penting untuk mengaktifkan flag HttpOnly dan Secure guna memastikan cookies lebih aman.
 </details>
