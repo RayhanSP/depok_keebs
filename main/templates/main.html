@@ -1,48 +1,51 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Depok Keebs</title>
+{% endblock meta %}
 {% block content %}
-<h1>Depok Keebs</h1>
+{% include 'navbar.html' %}
 
-<h5>Name:</h5>
-<p>{{ name }}</p>
+<!-- NPM, Name, and Class Section -->
+<div class="bg-indigo-600 py-2 px-4 rounded-md mt-4 mx-4 md:mx-8 flex justify-between items-center text-white animate-shine">
+  <div class="flex-1 text-center">
+    <span class="font-semibold">NPM:</span> {{ npm }}
+  </div>
+  <div class="flex-1 text-center">
+    <span class="font-semibold">Name:</span> {{ name }}
+  </div>
+  <div class="flex-1 text-center">
+    <span class="font-semibold">Class:</span> {{ class }}
+  </div>
+</div>
 
-<h5>Class:</h5>
-<p>{{ class }}</p>
+<div class="overflow-x-hidden px-4 md:px-8 pb-8 pt-8 min-h-screen flex flex-col">
+  <div class="flex justify-end mb-6">
+    <a href="{% url 'main:create_product_entry' %}" class="bg-[#6A9AB0] hover:bg-[#5C869A] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      Add New Product Entry
+    </a>
+  </div>
+  
+  {% if not product_entries %}
+  <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+    <img src="{% static 'image/sedih-banget.png' %}?v={{ timestamp }}" alt="Sad face" class="w-84 h-64 mb-4"/>
+    <p class="text-center text-indigo-600 mt-4 bg-indigo-100 p-4 rounded-lg shadow-md">
+      Belum ada data product...
+    </p>
+  </div>
+  {% else %}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
+    {% for product_entry in product_entries %}
+      {% include 'product_card.html' with product_entry=product_entry %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
 
-{% if not product_entries %}
-<p>Belum ada produk pada Depok Keebs.</p>
-{% else %}
-<table>
-  <tr>
-    <th>Keyboard Name</th>
-    <th>Price</th>
-    <th>Description</th>
-    <th>Category</th>
-    <th>Connection Type</th>
-    <th>Layout</th>
-  </tr>
+<!-- Last Login Section -->
 
-  {% comment %} Berikut cara memperlihatkan produk di bawah baris ini 
-  {% endcomment %} 
-  {% for product_entry in product_entries %}
-  <tr>
-    <td>{{product_entry.name}}</td>
-    <td>{{product_entry.price}}</td>
-    <td>{{product_entry.description}}</td>
-    <td>{{product_entry.category}}</td>
-    <td>{{product_entry.connection_type}}</td>
-    <td>{{product_entry.layout}}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% endif %}
-
-<br />
-
-<a href="{% url 'main:create_product_entry' %}">
-  <button>Add New Product</button>
-</a>
-<a href="{% url 'main:logout' %}">
-  <button>Logout</button>
-</a>
-<h5>Sesi terakhir login: {{ last_login }}</h5>
 {% endblock content %}

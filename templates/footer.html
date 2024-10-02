@@ -1,0 +1,7 @@
+<footer class="bg-[#697565] text-white py-4">
+    <div class="container mx-auto text-center">
+        {% if user.is_authenticated %}
+        <p class="text-sm">Last Login: {{ last_login }}</p>
+        {% endif %}
+    </div>
+</footer>

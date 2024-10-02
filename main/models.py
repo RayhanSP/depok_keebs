@@ -11,6 +11,7 @@ class Product(models.Model):
     category = models.CharField(max_length=50)
     connection_type = models.CharField(max_length=50)
     layout = models.CharField(max_length=20)
+    image = models.ImageField(upload_to='product_images/', blank=True, null=True)
 
-    
+
     
