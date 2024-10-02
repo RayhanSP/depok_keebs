@@ -7,20 +7,8 @@
 {% block content %}
 {% include 'navbar.html' %}
 
-<!-- NPM, Name, and Class Section -->
-<div class="bg-indigo-600 py-2 px-4 rounded-md mt-4 mx-4 md:mx-8 flex justify-between items-center text-white animate-shine">
-  <div class="flex-1 text-center">
-    <span class="font-semibold">NPM:</span> {{ npm }}
-  </div>
-  <div class="flex-1 text-center">
-    <span class="font-semibold">Name:</span> {{ name }}
-  </div>
-  <div class="flex-1 text-center">
-    <span class="font-semibold">Class:</span> {{ class }}
-  </div>
-</div>
-
-<div class="overflow-x-hidden px-4 md:px-8 pb-8 pt-8 min-h-screen flex flex-col">
+<!-- Penambahan padding-top agar konten tidak tertutup oleh navbar -->
+<div class="overflow-x-hidden px-4 md:px-8 pb-8 pt-20 min-h-screen flex flex-col"> 
   <div class="flex justify-end mb-6">
     <a href="{% url 'main:create_product_entry' %}" class="bg-[#6A9AB0] hover:bg-[#5C869A] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
