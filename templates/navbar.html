@@ -2,7 +2,8 @@
   <div class="w-full px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <div class="flex items-center">
-        <h1 class="text-2xl font-bold text-white">Depok Keebs</h1>
+        <!-- Membuat Depok Keebs menjadi link ke halaman utama menggunakan show_main -->
+        <a href="{% url 'main:show_main' %}" class="text-2xl font-bold text-white">Depok Keebs</a>
       </div>
       <!-- Mobile menu button -->
       <div class="md:hidden flex items-center">
@@ -15,8 +16,8 @@
 
       <!-- Links in Desktop mode -->
       <div class="hidden md:flex items-center space-x-4">
-        <a href="#" class="text-white hover:text-gray-300">About Us</a>
         <a href="#" class="text-white hover:text-gray-300">Category</a>
+        <a href="javascript:void(0);" class="text-white hover:text-gray-300" onclick="showAboutUsModal();">About Us</a>
         {% if user.is_authenticated %}
           <span class="text-gray-300">Welcome, {{ user.username }}</span>
           <a href="{% url 'main:logout' %}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">
@@ -30,15 +31,15 @@
             Register
           </a>
         {% endif %}
-      </div>
+      </div>    
     </div>
   </div>
 
   <!-- Mobile menu (hidden by default) -->
   <div class="mobile-menu hidden md:hidden px-4 w-full bg-[#181C14]">
     <div class="pt-2 pb-3 space-y-1">
-      <a href="#" class="block text-white hover:text-gray-300">About Us</a>
       <a href="#" class="block text-white hover:text-gray-300">Category</a>
+      <a href="javascript:void(0);" class="block text-white hover:text-gray-300" onclick="showAboutUsModal();">About Us</a>
       {% if user.is_authenticated %}
         <span class="block text-gray-300">Welcome, {{ user.username }}</span>
         <a href="{% url 'main:logout' %}" class="block bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">
@@ -55,6 +56,31 @@
     </div>
   </div>
 
+  <!-- Modal untuk About Us -->
+  <div id="aboutUsModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+    <div id="aboutUsModalContent" class="relative bg-white rounded-lg shadow-lg w-full sm:w-5/6 md:w-2/3 lg:w-1/2 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out max-h-screen overflow-auto">
+      <!-- Modal header -->
+      <div class="flex items-center justify-between p-4 border-b rounded-t" style="background-color: #697565;">
+        <h3 class="text-xl font-semibold text-white">
+          About Us
+        </h3>
+        <button type="button" class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeAboutUsModalBtn">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="px-6 py-4 space-y-6">
+        <p class="text-gray-700 text-lg">Mau keyboard yang tak hanya enak dilihat tapi juga enak dipakai? Depok Keebs siap mewujudkan keyboard impianmu. Ucapkan selamat tinggal pada keyboard standar dan mulailah menciptakan pengalaman mengetik yang berbeda dengan kami.</p>
+        <p class="text-gray-600">Made by Rayhan Syahdira Putra</p>
+        <p class="text-gray-600">2024</p>
+      </div>
+    </div>
+  </div>
+
   <script>
     const btn = document.querySelector("button.mobile-menu-button");
     const menu = document.querySelector(".mobile-menu");
@@ -62,5 +88,28 @@
     btn.addEventListener("click", () => {
       menu.classList.toggle("hidden");
     });
+
+    // Toggle modal untuk About Us
+    const aboutUsModal = document.getElementById('aboutUsModal');
+    const aboutUsModalContent = document.getElementById('aboutUsModalContent');
+    
+    function showAboutUsModal() {
+        aboutUsModal.classList.remove('hidden');
+        setTimeout(() => {
+          aboutUsModalContent.classList.remove('opacity-0', 'scale-95');
+          aboutUsModalContent.classList.add('opacity-100', 'scale-100');
+        }, 50);
+    }
+
+    function hideAboutUsModal() {
+        aboutUsModalContent.classList.remove('opacity-100', 'scale-100');
+        aboutUsModalContent.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+          aboutUsModal.classList.add('hidden');
+        }, 150);
+    }
+
+    // Close modal ketika tombol close ditekan
+    document.getElementById('closeAboutUsModalBtn').addEventListener('click', hideAboutUsModal);
   </script>
 </nav>
