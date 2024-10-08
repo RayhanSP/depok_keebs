@@ -430,6 +430,91 @@ Padding adalah ruang di dalam border elemen, antara konten elemen dan border. Pa
 |--------------|---------------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | Konsep | Flexbox adalah modul tata letak satu dimensi yang digunakan untuk mengatur elemen dalam satu arah: baris (row) atau kolom (column). |  CSS Grid Layout adalah modul tata letak dua dimensi yang memungkinkan pengembang web untuk membuat desain grid yang kompleks dan fleksibel. |
 | Kegunaan      | Flexbox sangat berguna waktu kamu pengen mengatur elemen secara dinamis, misalnya mengatur elemen agar menyesuaikan ukuran mereka secara otomatis untuk mengisi ruang yang tersedia, atau agar berperilaku dengan fleksibilitas yang lebih tinggi di berbagai ukuran layar.                                         | Dengan Grid Layout, kamu bisa mengatur elemen dalam baris dan kolom secara bersamaan, sehingga sangat berguna untuk membuat tata letak yang lebih bagus dibandingkan sama Flexbox. |
+</details> 
+
+<details>
+ 
+<summary> <b> Tugas 6: JavaScript dan AJAX </b> </summary>
+
+
+**Implementasi checklist Tugas 6:**
+
+**Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial):**]
+1. Pertama, kita akan membuat API untuk mengambil data Product dengan mengganti field data menjadi `data = Product.objects.filter(user=request.user)` di fungsi `show_json()` dan `show_xml` pada views. Penggantian field ini juga akan memfilter berdasarkan pengguna yang sedang login.
+2. Tambahkan fungsi berikut di `main.html` untuk mengambil data product menggunakan AJAX `GET`
+   ```html
+   async function getProductEntries(){
+      return fetch("{% url 'main:show_json' %}").then((res) => res.json());
+      }
+   ```
+   Implementasikan juga fungsi `refreshProductEntries()`
+3. Untuk menampilkan data product secara dinamis, implementasikan fungsi `refreshProductEntries()` juga di `main.html`
+4. Tambahkan button baru untuk menambahkan produk menggunakan AJAX `POST` sebagai berikut:
+   ```html
+   <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="bg-[#6A9AB0] hover:bg-[#5C869A] text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      Add New Product Entry by <span class="text-red-500">AJAX</span>
+    </button>
+   ```
+5. Implementasikan modal form di `main.html` untuk button yang dibuat pada langkah 4
+6. Implementasikan fungsi AJAX `POST` `addProductEntry()` di `main.html`
+   ```html
+   function addProductEntry() {
+      fetch("{% url 'main:add_product_entry_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#productEntryForm')),
+      })
+      .then(response => refreshProductEntries());
+
+      document.getElementById("productEntryForm").reset(); 
+      document.querySelector("[data-modal-toggle='crudModal']").click();
+      hideModal();
+
+      return false;
+      }
+   ```
+7. Buat dan implementasikan fungsi `create_product_entry_ajax()` di views untuk menangani penambahan mood dengan AJAX `POST`. Tambahkan dekorator berikut sebelum fungsi agar Django tidak perlu mengecek keberadaan CSRF token pada `POST` request pada fungsi dan fungsi hanya bisa diakses pengguna ketika pengguna mengirim `POST` request
+   ```html
+   @csrf_exempt
+    @require_POST
+   ```
+8. Routing fungsi baru tersebut ke urls
+9. Untuk refresh secara asinkronus, setelah berhasil menambahkan product melalui AJAX `POST`, kita akan melakukan refresh daftar product secara otomatis. Jadi, pada fungsi `addProductdEntry()`, kita tambahkan pemanggilan `refreshProductEntries()` setelah product berhasil ditambahkan.
+
+
+## **Pertanyaan 1**
+**Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web:**
+
+JavaScript memungkinkan interaktivitas dan responsivitas halaman web tanpa perlu melakukan reload. Dengan JavaScript, kita dapat melakukan manipulasi DOM, menjalankan AJAX requests untuk komunikasi asinkronus, dan memberikan pengalaman pengguna yang dinamis.
+
+
+## **Pertanyaan 2**
+**Jelaskan fungsi dari penggunaan await ketika kita menggunakan `fetch()`! Apa yang akan terjadi jika kita tidak menggunakan `await`:**
+
+`await` digunakan untuk menunggu hasil dari `fetch()` yang mengembalikan Promise. Dengan `await`, JavaScript akan menjeda eksekusi kode hingga data dari server diterima. Jika kita tidak menggunakan `await`, JavaScript akan melanjutkan eksekusi kode sebelum data selesai diambil, sehingga dapat menyebabkan error karena data belum siap.
+
+
+## **Pertanyaan 3**
+**Mengapa kita perlu menggunakan decorator `csrf_exempt` pada view yang akan digunakan untuk AJAX POST:**
+
+`csrf_exempt` digunakan untuk mengecualikan mekanisme CSRF protection pada sebuah view yang menerima POST request dari AJAX. AJAX request biasanya tidak menyertakan CSRF token secara otomatis, sehingga jika tidak di-exempt, permintaan `POST` akan ditolak oleh Django sebagai tindakan keamanan.
+
+
+## **Pertanyaan 4**
+**Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja:**
+
+Frontend validation bisa dimanipulasi oleh pengguna yang berniat jahat, sehingga kita tetap membutuhkan backend validation untuk memastikan data yang diterima server adalah bersih dan aman. Ini membantu mencegah celah keamanan seperti XSS (Cross-Site Scripting) atau manipulasi data lainnya yang mungkin tidak bisa dihindari dengan pembersihan frontend saja.
+
+</details>
+
+
+
+
+
+
+   
 
 
 
