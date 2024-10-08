@@ -149,10 +149,10 @@ Jika tidak menyertakan `csrf_token` dalam form Django, secara default Django aka
 **Jelaskan cara kerja penghubungan model `Product` dengan `User`:**
 
 Cara kerja penghubungan model Product dengan User di Django bekerja melalui konsep ForeignKey, yang memungkinkan satu entitas (dalam hal ini, Product) berelasi dengan satu entitas lainnya (User). Berikut cara kerjanya secara bertahap:
-1. Pada model Product, kita menambahkan field user yang merupakan ForeignKey ke model User. Ini berarti setiap entri mood dihubungkan secara langsung ke satu pengguna.
+1. Pada model Product, kita menambahkan field user yang merupakan ForeignKey ke model User. Ini berarti setiap entri product dihubungkan secara langsung ke satu pengguna.
 2. Di dalam views, ketika pengguna mengirim form untuk membuat entri baru, kita tidak langsung menyimpan data ke database. Alih-alih, kita menahan proses simpan dengan `commit=False`, yang memungkinkan kita menambahkan informasi tambahan sebelum data disimpan ke database.
 3. Ketika menampilkan data di halaman utama, kita hanya menampilkan Product yang dibuat oleh pengguna yang sedang login. Ini dilakukan dengan menggunakan metode `filter()`, di mana kita menyaring data Product yang user-nya sesuai dengan `request.user`.
-Dengan menambahkan ForeignKey di model, mengisi field user saat menyimpan, dan menyaring data berdasarkan pengguna yang sedang login, Django secara otomatis mengelola hubungan antara MoodEntry dan User, sehingga setiap entri mood selalu terkait dengan pengguna yang membuatnya.
+Dengan menambahkan ForeignKey di model, mengisi field user saat menyimpan, dan menyaring data berdasarkan pengguna yang sedang login, Django secara otomatis mengelola hubungan antara productEntry dan User, sehingga setiap entri product selalu terkait dengan pengguna yang membuatnya.
 
 
 ## **Pertanyaan 3**
@@ -475,7 +475,7 @@ Padding adalah ruang di dalam border elemen, antara konten elemen dan border. Pa
       return false;
       }
    ```
-7. Buat dan implementasikan fungsi `create_product_entry_ajax()` di views untuk menangani penambahan mood dengan AJAX `POST`. Tambahkan dekorator berikut sebelum fungsi agar Django tidak perlu mengecek keberadaan CSRF token pada `POST` request pada fungsi dan fungsi hanya bisa diakses pengguna ketika pengguna mengirim `POST` request
+7. Buat dan implementasikan fungsi `create_product_entry_ajax()` di views untuk menangani penambahan product dengan AJAX `POST`. Tambahkan dekorator berikut sebelum fungsi agar Django tidak perlu mengecek keberadaan CSRF token pada `POST` request pada fungsi dan fungsi hanya bisa diakses pengguna ketika pengguna mengirim `POST` request
    ```html
    @csrf_exempt
     @require_POST
